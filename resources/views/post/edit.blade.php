@@ -15,7 +15,7 @@
             </div>
             
             <div class="flex justify-end">
-                <button type="submit" class="btn btn-primary btn-wide">編集</button>
+                <button type="submit" class="btn btn-primary btn-wide">編集して更新</button>
             </div>
         </form>
     </div>

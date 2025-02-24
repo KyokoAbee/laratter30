@@ -22,9 +22,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/post/create',[PostController::class, 'create'])->name('post.create');
     // 作成処理
     Route::post('/post',[PostController::class, 'store'])->name('post.store');
-    // 投稿内容の確認と編集
+    // 投稿内容の表示
     Route::get('/post/{id}/edit', [PostController::class, 'edit'])->name('post.edit');
-
+    // 編集
     Route::put('/post/{id}', [PostController::class, 'update'])->name('post.update');
 
 });
