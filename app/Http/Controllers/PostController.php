@@ -38,13 +38,13 @@ class PostController extends Controller
         return redirect()->route('post.edit', $post->id)->with('success', '投稿が作成されました');
 	}
 
-
+    // 編集画面を表示
     public function edit($id){
         $post = Post::findOrFail($id);
         return view('post.edit', compact('post'));
     }
 
-
+    // 編集された投稿内容をDBに保存
     public function update(Request $request, $id){
         // バリデーション
          $validatedData = $request->validate([
