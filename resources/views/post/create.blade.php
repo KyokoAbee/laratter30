@@ -4,7 +4,7 @@
             @csrf
             <div>
                 <label for="content" class="block text-lg font-medium text-gray-700 mb-2">読みたい本のジャンル、テーマを教えてください。</label>
-                <input type="text" name="content" id="content" class="input input-bordered w-full p-3" placeholder="例: 旅したくなるような本、クスっと笑えるエッセイ" required>
+                <input type="text" name="content" id="content" class="input input-bordered w-full p-3" placeholder="例: 旅したくなるような小説、クスっと笑えるエッセイ" required>
             </div>
             
             <div class="flex justify-end">

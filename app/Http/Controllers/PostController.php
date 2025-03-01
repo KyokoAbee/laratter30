@@ -66,4 +66,19 @@ class PostController extends Controller
 	
 	
 	}
-}
+
+    // 検索
+    public function search(Request $request){
+        $query = $request->input('query'); //検索ボックスに入力した文字列を取得
+        $posts = Post::where('content', 'like', "%{$query}%")->get(); //postsテーブル内を検索
+
+        return view('post.search-results', compact('posts')); //$posts変数をview に渡す
+    }
+
+    // 検索結果の表示
+    public function show($id){
+        $post = Post::findOrFail($id);
+        return view('post.show', compact('post'));
+    }
+
+ }

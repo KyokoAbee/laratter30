@@ -27,6 +27,12 @@ Route::middleware('auth')->group(function () {
     // 編集
     Route::put('/post/{id}', [PostController::class, 'update'])->name('post.update');
 
+    // 検索
+    Route::get('/search', [PostController::class, 'search'])->name('search');
+
+    // 検索結果の表示
+    Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
+
 });
 
 require __DIR__.'/auth.php';
