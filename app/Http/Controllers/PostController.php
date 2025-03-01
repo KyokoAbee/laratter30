@@ -9,6 +9,20 @@ use Illuminate\Support\Facades\Auth; // Authファサードをインポート、
 
 class PostController extends Controller
 {
+    // 一覧
+    public function index(){
+        // dd('PostControllerのindex is called'); // このメッセージが表示されるか確認
+        $posts = Post::with(['user', 'post_tags', 'recommendations'])
+            ->latest() //新着順
+            ->paginate(10);
+
+        // dd($posts); // データが取得できているか確認
+
+    return view('dashboard', compact('posts'));
+
+    }
+
+
     // ユーザーに見せる画面は return view してview ファイルにコンテンツを書く
     //投稿
     public function create(){

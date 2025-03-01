@@ -23,12 +23,14 @@
             </div>
 
 <!-- Search Bar -->
-<div class="flex items-center"> <!-- 追加 -->
-    <form method="GET" action="{{ route('search') }}"> <!-- 追加 -->
-    <input type="text" name="query" placeholder="投稿からさがす..." class="border rounded-md px-2 py-1">
-    <button type="submit" class="ml-2 px-3 py-1 bg-blue-500 text-white rounded-md">検索</button>
-    </form> <!-- 追加 -->
-</div> <!-- 追加 -->
+<div class="flex items-center"> 
+    <form method="GET" action="{{ route('search') }}" class="flex w-full max-w-md"> 
+        <input type="text" name="query" placeholder="投稿からさがす..." 
+               class="input border-[#0ea5e9] focus:border-[#0ea5e9] focus:outline-[#0ea5e9] rounded-lg flex-grow">
+        <button type="submit" 
+                class="btn border-[#0ea5e9] bg-transparent hover:bg-[#0ea5e9] text-[#0ea5e9] hover:text-white rounded-lg ml-2">検索</button>
+    </form>
+</div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">

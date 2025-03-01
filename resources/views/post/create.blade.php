@@ -8,7 +8,7 @@
             </div>
             
             <div class="flex justify-end">
-                <button type="submit" class="btn btn-primary btn-wide">投稿</button>
+                <button class="btn btn-outline btn-info">投稿</button>
             </div>
         </form>
     </div>
