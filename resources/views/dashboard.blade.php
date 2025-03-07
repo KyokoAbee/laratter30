@@ -12,7 +12,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
 
                     <div class="mb-4 flex justify-end">
-                        <a href="{{ route('post.create') }}" class="btn btn-info text-white">新規投稿</a>
+                        <a href="{{ route('post.create') }}" class="btn btn-primary text-white">新規投稿</a>
                     </div>
 
                     @if($posts->isEmpty())

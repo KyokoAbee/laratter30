@@ -19,6 +19,17 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        //後で消す
+        if (env('DB_QUERY_LOG', false)) {
+            \Illuminate\Support\Facades\DB::listen(function ($query) {
+                \Illuminate\Support\Facades\Log::info(
+                    $query->sql,
+                    [
+                        'bindings' => $query->bindings,
+                        'time' => $query->time
+                    ]
+                );
+            });
+        }
     }
 }

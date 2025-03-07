@@ -14,8 +14,28 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                warmPeach: '#FFB997',
+                softSunshineYellow: '#FFD791',
+                mintGreen: '#A7E8BD',
+                OffWhite: '#F5F1E'
+            },
+
         },
     },
 
-    plugins: [forms],
+    plugins: [forms, require('daisyui')],
+    daisyui: {
+        themes: [
+            {
+                mytheme: {
+                    'primary': '#FFB997', //ピンク
+                    'secondary': '#FFD791', //イエロー
+                    'accent': '#A7E8BD', //グリーン  
+                    'base' : '#F5F1E', //オフホワイト
+                    // 他のカスタムカラーここに
+                },
+            },
+        ],
+    },
 };

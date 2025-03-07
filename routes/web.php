@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RecommendationController;
 
 
 Route::get('/', function () {
@@ -35,6 +36,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // 検索結果の表示
     Route::get('/post/{id}', [PostController::class, 'show'])->name('post.show');
+
+    // 返信
+    Route::get('/post/{id}/recommendations/create', [RecommendationController::class, 'create'])->name('recommendation.create');
+    //返信処理
+    Route::post('/post/{id}/recommendations', [RecommendationController::class, 'store'])->name('recommendation.store');
+    // 返信の修正
+    Route::get('/post/{postId}/recommendations/{recommendationId}/edit', [RecommendationController::class, 'edit'])->name('recommendation.edit')->middleware('auth');
+    // 修正したものを更新
+    Route::put('/post/{postId}/recommendations/{recommendationId}', [RecommendationController::class, 'update'])->name('recommendation.update')->middleware('auth');
 
 });
 

@@ -93,6 +93,10 @@ class PostController extends Controller
     public function show($id){
         $post = Post::findOrFail($id);
         return view('post.show', compact('post'));
+
+        // 返信も表示
+        $post = Post::with(['user', 'recommendations.user', 'recommendations.book'])->findOrFail($id);
+        return view('post.show', compact('post'));
     }
 
  }
