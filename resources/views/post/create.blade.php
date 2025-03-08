@@ -8,7 +8,7 @@
             </div>
             
             <div class="flex justify-end">
-                <button class="btn btn-outline btn-info">投稿</button>
+                <button class="btn bg-[#30466f] hover:bg-[#30466f]/90 border-[#30466f] text-white">投稿</button>
             </div>
         </form>
     </div>

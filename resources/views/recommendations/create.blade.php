@@ -96,9 +96,8 @@
 
                         <!-- 送信ボタン -->
                         <div class="flex justify-between">
-                            <a href="{{ route('post.show', $post) }}" class="btn">キャンセル</a>
-                            <button type="submit" class="btn btn-outline btn-info" id="submitButton" disabled>返信を投稿</button>
-                        </div>
+                            <a href="{{ route('post.show', $post) }}" class="btn bg-[#30466f] hover:bg-[#30466f]/90 border-[#30466f] text-white">キャンセル</a>
+                            
                     </form>
 
 

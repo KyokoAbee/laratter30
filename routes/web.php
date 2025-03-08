@@ -46,6 +46,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     // 修正したものを更新
     Route::put('/post/{postId}/recommendations/{recommendationId}', [RecommendationController::class, 'update'])->name('recommendation.update')->middleware('auth');
 
+
+    // ベストレコメンド
+    Route::post('/post/{postId}/recommendation/{recommendationId}/best', [RecommendationController::class, 'setBest'])->name('recommendation.setBest')->middleware('auth');
 });
 
 require __DIR__.'/auth.php';

@@ -143,4 +143,28 @@ public function store(Request $request, $id)
         
         return redirect()->route('post.show', $postId)->with('success', 'おすすめの本を更新しました');
     }
+
+    // ベストレコメンド選出
+    public function setBest($postId, $recommendationId){
+
+        // 投稿が存在するか確認
+        $post = Post::findOrFail($postId);
+
+        // 投稿者のみがベストレコメンドを設定できるように権限チェック
+        if (Auth::id() != $post->user_id) {
+            return redirect()->route('post.show', $postId)->with('error', 'ベストレコメンドの設定は投稿者のみ可能です');
+        }
+
+        // 同じ投稿のほかのレコメンドをリセット
+        Recommendation::where('post_id', $postId)
+            ->where('is_best', true)
+            ->update(['is_best' => false]);
+
+        // 選択されたレコメンドをベストに設定
+        $recommendation = Recommendation::findOrFail($recommendationId);
+        $recommendation->is_best = true;
+        $recommendation->save();
+
+        return redirect()->route('post.show', $postId)->with('success', 'この投稿をベストレコメンドに設定しました');
+    }
 }

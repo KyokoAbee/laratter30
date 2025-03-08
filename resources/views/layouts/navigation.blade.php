@@ -26,9 +26,9 @@
 <div class="flex items-center"> 
     <form method="GET" action="{{ route('search') }}" class="flex w-full max-w-md"> 
         <input type="text" name="query" placeholder="投稿からさがす..." 
-               class="input border-[#0ea5e9] focus:border-[#0ea5e9] focus:outline-[#0ea5e9] rounded-lg flex-grow">
+               class="input border-gray-400 focus:border-gray-400 focus:outline-gray-400 rounded-lg flex-grow">
         <button type="submit" 
-                class="btn border-[#0ea5e9] bg-transparent hover:bg-[#0ea5e9] text-[#0ea5e9] hover:text-white rounded-lg ml-2">検索</button>
+                class="btn border-gray-400 bg-transparent hover:bg-gray-400 text-gray-400 hover:text-white rounded-lg ml-2">検索</button>
     </form>
 </div>
 
