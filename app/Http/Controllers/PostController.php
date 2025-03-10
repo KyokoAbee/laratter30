@@ -99,4 +99,17 @@ class PostController extends Controller
         return view('post.show', compact('post'));
     }
 
+    // 投稿一覧の表示
+    public function myPosts() {
+        $posts = Post::where('user_id', Auth::id())
+            ->with(['user', 'post_tags', 'recommendations'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        // 既存のダッシュボードのビューを再利用
+       return view('dashboard',[
+        'posts' => $posts,
+        'title' =>'あなたの投稿一覧'
+       ]);
+    }
+
  }

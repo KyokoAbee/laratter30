@@ -12,11 +12,21 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                        {{ __('ダッシュボード') }}
+
                     </x-nav-link>
                     <x-nav-link :href="route('post.create')" :active="request()->routeIs('post.create')">
-                        {{ __('投稿') }}
+                        {{ __('新規投稿') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('post.my')" :active="request()->routeIs('post.my')">
+                        {{ __('あなたの投稿一覧') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('recommendation.my')" :active="request()->routeIs('recommendation.my')">
+                        {{ __('あなたの返信一覧') }}
                     </x-nav-link>
 
                 </div>

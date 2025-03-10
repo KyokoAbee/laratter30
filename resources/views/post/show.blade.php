@@ -60,7 +60,7 @@
 <!-- レコメンド一覧 -->
 @if(!$post->recommendations->isEmpty())
     <div class="space-y-4">
-        <!-- まずベストレコメンドを表示 -->
+        <!-- ベストレコメンドの投稿 is_best で判断-->
         @foreach($post->recommendations->where('is_best', true) as $recommendation)
             <div class="p-4 border-2 border-[#FFD791] rounded-lg bg-[#FFD791]/10 flex flex-col md:flex-row gap-4">
 
@@ -92,6 +92,29 @@
                             </svg>
                             Amazonで見る
                         </a>
+
+                        <!-- お礼コメント -->
+                         <!-- お礼コメントボタン（投稿者のみ表示） -->
+                        @if(Auth::id() == $post->user_id && !isset($recommendation->evaluation))
+                            <button type="button" 
+                                    class="btn bg-[#FFB997] hover:bg-[#FFB997]/90 border-[#FFB997] text-gray-800 ml-2 inline-flex items-center"
+                                    x-data=""
+                                    x-on:click="$dispatch('open-modal', 'thank-you-modal-{{ $recommendation->id }}')">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                                </svg>
+                                お礼コメントを送る
+                            </button>
+                        @endif
+
+                        <!-- お礼コメント表示 -->
+                        @if(isset($recommendation->evaluation) && $recommendation->evaluation->thank_you_message)
+                            <div class="mt-4 bg-[#FFB997]/10 p-3 rounded-lg border border-[#FFB997]">
+                                <p class="text-sm font-semibold mb-1">{{ $post->user->name }}さんからのお礼コメント：</p>
+                                <p class="text-sm">{{ $recommendation->evaluation->thank_you_message }}</p>
+                                <p class="text-xs text-gray-500 mt-1">{{ $recommendation->evaluation->created_at->format('Y/m/d H:i') }}</p>
+                            </div>
+                        @endif
                     </div>
                 </div>
 
@@ -108,7 +131,7 @@
         @endforeach
     </div>
                         
-        <!-- 残りのレコメンドを表示 -->
+        <!-- ベストレコメンドになっていない投稿 is_best がfalse-->
 
         @foreach($post->recommendations->where('is_best', false) as $recommendation)
             <div class="p-4 border rounded-lg">
@@ -138,4 +161,40 @@
         </div>
     </div>
 </div>
+
+        <!-- お礼コメントモーダル -->
+        @foreach($post->recommendations->where('is_best', true) as $recommendation)
+            <x-modal name="thank-you-modal-{{ $recommendation->id }}" :show="false" maxWidth="md">
+                <form method="POST" action="{{ route('reply.thank-you') }}">
+                    @csrf
+                    <input type="hidden" name="recommendation_id" value="{{ $recommendation->id }}">
+                    
+                    <div class="p-6">
+                        <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
+                            {{ $recommendation->user->name }}さんへのお礼コメント
+                        </h2>
+
+                        <div class="mt-6">
+                            <textarea
+                                name="thank_you_message"
+                                class="w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm"
+                                rows="4"
+                                placeholder="心を込めたお礼メッセージを書きましょう"
+                                required
+                            ></textarea>
+                        </div>
+
+                        <div class="mt-6 flex justify-end">
+                            <button type="button" class="inline-flex items-center px-4 py-2 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-500 rounded-md font-semibold text-xs text-gray-700 dark:text-gray-300 uppercase tracking-widest shadow-sm hover:bg-gray-50 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800 disabled:opacity-25 transition ease-in-out duration-150" x-on:click="$dispatch('close-modal')">
+                                キャンセル
+                            </button>
+
+                            <button type="submit" class="inline-flex items-center px-4 py-2 bg-[#30466f] hover:bg-[#30466f]/90 border border-[#30466f] rounded-md font-semibold text-xs text-white uppercase tracking-widest focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 ml-3">
+                                送信する
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </x-modal>
+        @endforeach
 </x-app-layout>

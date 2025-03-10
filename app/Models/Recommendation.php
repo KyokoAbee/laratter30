@@ -36,4 +36,8 @@ class Recommendation extends Model
     public function book(){
         return $this->belongsTo(Book::class);
     }
+
+    public function evaluation(){
+        return $this->hasOne(RecommendationEvaluation::class);
+    }
 }

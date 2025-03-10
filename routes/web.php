@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RecommendationController;
-
+use App\Http\Controllers\ReplyController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,6 +21,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // ログイン後一覧
     Route::get('/dashboard', [PostController::class, 'index'])->name('dashboard');
+
+    // 投稿一覧
+    Route::get('/my-posts', [PostController::class, 'myPosts'])->name('post.my');
+
+    // 返信一覧
+    Route::get('/my-recommendations', [RecommendationController::class, 'myRecommendations'])->name('recommendation.my');
 
     // 投稿作成画面。nameは[]内の短縮系。
     Route::get('/post/create',[PostController::class, 'create'])->name('post.create');
@@ -49,6 +55,11 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     // ベストレコメンド
     Route::post('/post/{postId}/recommendation/{recommendationId}/best', [RecommendationController::class, 'setBest'])->name('recommendation.setBest')->middleware('auth');
+
+    // お礼コメント
+    Route::post('/thank-you', [ReplyController::class, 'storeThankYou'])
+        ->name('reply.thank-you')
+        ->middleware('auth');
 });
 
 require __DIR__.'/auth.php';

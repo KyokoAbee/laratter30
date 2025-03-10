@@ -167,4 +167,17 @@ public function store(Request $request, $id)
 
         return redirect()->route('post.show', $postId)->with('success', 'この投稿をベストレコメンドに設定しました');
     }
+
+    // 返信一覧の表示
+    public function myRecommendations(){
+        $recommendations = Recommendation::where('user_id', Auth::id())
+            ->with(['post', 'post.user', 'book'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+        
+        return view('recommendations.my-recommendations',[
+            'recommendations' => $recommendations,
+            'title' => 'あなたの返信一覧'
+        ]);
+    }
 }

@@ -143,9 +143,9 @@
                 }
             });
 
-               // 検索ボックス入力時の処理（デバウンス処理）
-    bookSearch.addEventListener('input', function() {
-        const query = this.value.trim();
+            // 検索ボックス入力時の処理（デバウンス処理）
+            bookSearch.addEventListener('input', function() {
+            const query = this.value.trim();
         
         // クエリが3文字未満の場合
         if (query.length < 3) {
@@ -168,7 +168,7 @@
         // ローディング表示
         searchLoading.classList.remove('hidden');
         
-        // 少し待ってからAPIリクエスト（タイピング中の過剰なリクエストを防止）
+        // 少し待ってからAPIリクエスト（タイピング中の過剰なリクエストを防止。0.5秒）
         searchTimeout = setTimeout(function() {
             fetchBooks(query);
         }, 500);
@@ -176,7 +176,7 @@
 
     // Google Books APIから本を検索する関数
     function fetchBooks(query) {
-        fetch(`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=12`)
+        fetch(`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=12`) //?q=${encodeURIComponent(query)} は検索クエリのパラメータ（ユーザーが入力した検索語）
             .then(response => response.json())
             .then(data => {
                 // ローディング非表示
@@ -211,8 +211,8 @@
                             </div>
                         `;
 
-                                                // クリックイベント
-                                                bookItem.addEventListener('click', function() {
+                        // クリックイベント
+                        bookItem.addEventListener('click', function() {
                             selectBook(title, authors, thumbnail, description, bookId);
                             searchResults.classList.add('hidden');
                         });
