@@ -180,4 +180,21 @@ public function store(Request $request, $id)
             'title' => 'あなたの返信一覧'
         ]);
     }
+
+        // is_best が付く前の投稿削除
+        public function destroy(Recommendation $recommendation){
+        // 認可チェック：自分の返信のみ削除可能 かつ is_best がfalseの場合のみ
+        if (Auth::id() !== $recommendation->user_id) {
+            return redirect()->back()->with('error', '他のユーザーの返信は削除できません');
+        }
+        
+        if ($recommendation->is_best) {
+            return redirect()->back()->with('error', 'ベストレコメンドに選ばれた返信は削除できません');
+        }
+        
+        // 返信の削除
+        $recommendation->delete();
+        
+        return redirect()->back()->with('success', '返信を削除しました');
+        }
 }

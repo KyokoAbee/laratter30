@@ -131,15 +131,15 @@
         @endforeach
     </div>
                         
-        <!-- ベストレコメンドになっていない投稿 is_best がfalse-->
-
-        @foreach($post->recommendations->where('is_best', false) as $recommendation)
-            <div class="p-4 border rounded-lg">
-                <div class="flex justify-between items-start">
-                    <div>
-                        <h4 class="font-bold">{{ $recommendation->user->name }}さんからのおすすめ</h4>
-                        <p class="text-sm text-gray-500">{{ $recommendation->created_at->format('Y/m/d H:i') }}</p>
-                    </div>
+    <!-- ベストレコメンドになっていない投稿 is_best がfalse-->
+    @foreach($post->recommendations->where('is_best', false) as $recommendation)
+        <div class="p-4 border rounded-lg">
+            <div class="flex justify-between items-start">
+                <div>
+                    <h4 class="font-bold">{{ $recommendation->user->name }}さんからのおすすめ</h4>
+                    <p class="text-sm text-gray-500">{{ $recommendation->created_at->format('Y/m/d H:i') }}</p>
+                </div>
+                <div class="flex space-x-2">
                     <!-- 投稿者のみにベストレコメンド選択ボタンを表示 -->
                     @if(Auth::id() == $post->user_id && !$recommendation->is_best)
                         <form action="{{ route('recommendation.setBest', [$post->id, $recommendation->id]) }}" method="POST">
@@ -149,13 +149,30 @@
                             </button>
                         </form>
                     @endif
-                </div>
-                                
-                <div class="mt-3">
-                    <p>{{ $recommendation->reason }}</p>
+                    
+                    <!-- 返信の投稿者のみに削除ボタンを表示（かつis_bestがfalseの場合のみ） -->
+                    <!-- : インラインスタイルを追加 -->
+                    @if(Auth::id() == $recommendation->user_id && !$recommendation->is_best)
+                        <form action="{{ route('recommendation.destroy', $recommendation->id) }}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" onclick="return confirm('この返信を削除してもよろしいですか？')" 
+                                    class="btn btn-sm text-white"
+                                    style="background-color: #dc2626; border-color: #dc2626;">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                </svg>
+                            </button>
+                        </form>
+                    @endif
                 </div>
             </div>
-        @endforeach
+                            
+            <div class="mt-3">
+                <p>{{ $recommendation->reason }}</p>
+            </div>
+        </div>
+    @endforeach
             </div>
             @endif
         </div>
@@ -170,6 +187,20 @@
                     <input type="hidden" name="recommendation_id" value="{{ $recommendation->id }}">
                     
                     <div class="p-6">
+
+                    <!-- フラッシュメッセージ -->
+                    @if (session('success'))
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                            <span class="block sm:inline">{{ session('success') }}</span>
+                        </div>
+                    @endif
+
+                    @if (session('error'))
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4" role="alert">
+                            <span class="block sm:inline">{{ session('error') }}</span>
+                        </div>
+                    @endif
+
                         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
                             {{ $recommendation->user->name }}さんへのお礼コメント
                         </h2>

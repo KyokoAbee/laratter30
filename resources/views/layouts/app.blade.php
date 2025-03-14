@@ -27,7 +27,7 @@
             <!-- フッター -->
             <footer class="bg-white py-6 mt-auto">
                 <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-500">
-                    &copy; {{ date('Y') }} kyoko. All rights reserved.
+                    &copy; {{ date('Y') }} HONMIKKE. All rights reserved.
                 </div>
             </footer>
         </div>

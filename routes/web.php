@@ -57,9 +57,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/post/{postId}/recommendation/{recommendationId}/best', [RecommendationController::class, 'setBest'])->name('recommendation.setBest')->middleware('auth');
 
     // お礼コメント
-    Route::post('/thank-you', [ReplyController::class, 'storeThankYou'])
-        ->name('reply.thank-you')
-        ->middleware('auth');
+    Route::post('/thank-you', [ReplyController::class, 'storeThankYou'])->name('reply.thank-you')->middleware('auth');
+
+    // 返信の削除 is_best が付く前
+    Route::delete('/recommendations/{recommendation}', [RecommendationController::class, 'destroy'])->name('recommendation.destroy')->middleware(['auth']);
 });
 
 require __DIR__.'/auth.php';

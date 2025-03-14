@@ -88,17 +88,20 @@
                             <label for="comment" class="label">
                                 <span class="label-text">この本をおすすめする理由 (投稿者にはおすすめする理由のみが表示されます。本の情報は開示されません。)</span>
                             </label>
-                            <textarea name="comment" id="comment" rows="6" class="textarea textarea-bordered" placeholder="この本の魅力や、投稿者さんの悩みに対して、どのように役立つと思うかを書いてください" required></textarea>
+                            <textarea name="comment" id="comment" rows="6" class="textarea textarea-bordered w-full" placeholder="この本の魅力や、投稿者さんの悩みに対して、どのように役立つと思うかを書いてください" required></textarea>
                             @error('comment')
                                 <span class="text-red-500 text-sm">{{ $message }}</span>
                             @enderror
                         </div>
 
+           
                         <!-- 送信ボタン -->
-                        <div class="flex justify-between">
+                        <div class="flex justify-end" style="gap: 15px;">
                             <a href="{{ route('post.show', $post) }}" class="btn bg-[#30466f] hover:bg-[#30466f]/90 border-[#30466f] text-white">キャンセル</a>
                             
-                    </form>
+                            <button type="submit" class="btn bg-[#30466f] hover:bg-[#30466f]/90 border-[#30466f] text-white" id="submitButton" >返信を投稿</button>
+                        </div>
+                        </form>
 
 
     <!-- Google Books API 連携用のJavaScript -->

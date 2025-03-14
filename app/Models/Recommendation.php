@@ -40,4 +40,6 @@ class Recommendation extends Model
     public function evaluation(){
         return $this->hasOne(RecommendationEvaluation::class);
     }
+
+
 }
