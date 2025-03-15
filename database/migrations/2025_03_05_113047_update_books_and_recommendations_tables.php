@@ -38,12 +38,12 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        // バックアップから必要なデータを新しいbooksテーブルに移行
-        DB::statement("
-            INSERT INTO books (google_books_id, title, author, isbn, publisher, published_date, thumbnail, description, created_at, updated_at)
-            SELECT id as google_books_id, title, author, isbn, publisher, published_date, thumbnail, description, created_at, updated_at
-            FROM books_backup
-        ");
+        // // バックアップから必要なデータを新しいbooksテーブルに移行
+        // DB::statement("
+        //     INSERT INTO books (google_books_id, title, author, isbn, publisher, published_date, thumbnail, description, created_at, updated_at)
+        //     SELECT id as google_books_id, title, author, isbn, publisher, published_date, thumbnail, description, created_at, updated_at
+        //     FROM books_backup
+        // ");
 
         // recommendationsテーブルに新しいbook_idカラムを追加
         Schema::table('recommendations', function (Blueprint $table) {
