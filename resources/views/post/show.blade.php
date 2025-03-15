@@ -40,8 +40,9 @@
                     <div class="mt-4 flex justify-end space-x-2">
                         @if(Auth::id() == $post->user_id)
                             <a href="{{ route('post.edit', $post->id) }}" class="btn bg-[#30466f] hover:bg-[#30466f]/90 border-[#30466f] text-white">編集</a>
+                        @else
+                            <a href="{{ route('recommendation.create', $post->id) }}" class="btn bg-[#30466f] hover:bg-[#30466f]/90 border-[#30466f] text-white">この投稿に返信する</a>
                         @endif
-                        <a href="{{ route('recommendation.create', $post->id) }}" class="btn bg-[#30466f] hover:bg-[#30466f]/90 border-[#30466f] text-white">この投稿に返信する</a>
                     </div>
                 </div>
 
