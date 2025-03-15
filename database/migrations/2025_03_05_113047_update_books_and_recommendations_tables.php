@@ -9,6 +9,13 @@ return new class extends Migration
 {
     public function up(): void
     {
+
+        Schema::table('books', function (Blueprint $table) {
+            $table->string('thumbnail')->nullable();
+            $table->string('google_books_id')->nullable()->unique();
+            $table->string('description')->nullable();
+        });
+
         // 外部キー制約を一時的に削除
         // Schema::table('recommendations', function (Blueprint $table) {
         //     $table->dropForeign('recommendations_book_id_foreign');
