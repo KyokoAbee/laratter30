@@ -46,16 +46,19 @@
             <p class="text-lg md:text-xl">
             あなたが今読むべき運命的な一冊との巡り合いを楽しんでみてください。
             </p>
-        </div>
-        
-        <!-- 下部リンク -->
-        <div class="mt-20">
-            <a href="{{ route('register') }}" class="inline-flex items-center text-Navy hover:text-Navy/80 transition-colors text-sm">
-                <span>できることを見る</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-                </svg>
-            </a>
+
+            <!-- 新規登録ボタン -->
+            <div class="mt-8">
+            @guest
+            <a href="{{ route('register') }}" class="inline-flex items-center px-6 py-3 bg-white border border-gray-300 rounded-full text-Navy font-medium text-sm hover:bg-gray-50 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
+                    </svg>
+                    新規登録
+                </a>
+                @endguest
+            </div>
+  
         </div>
     </div>
 </body>
