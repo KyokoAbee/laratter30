@@ -2,16 +2,18 @@
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
-            <div class="flex">
+            <div class="flex items-center">
+
                 <!-- Logo -->
-                <!-- <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800 dark:text-gray-200" />
-                    </a>
-                </div> -->
+                <div class="shrink-0 flex items-center">
+                    <div class="text-2xl font-bold mr-4">
+                        <span style="color: #e77965;">HON</span><span style="color: #66aa93;">MIKKE</span>
+                    </div>
+                </div>
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+
 
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('ダッシュボード') }}
@@ -40,8 +42,8 @@
         <button type="submit" 
                 class="btn border-gray-400 bg-transparent hover:bg-gray-400 text-gray-400 hover:text-white rounded-lg ml-2">検索</button>
     </form>
-    <a href="{{ route('post.create') }}" class="btn bg-[#30466f] hover:bg-[#30466f]/90 border-[#30466f] text-white whitespace-nowrap">投稿</a>
 
+    <a href="{{ route('post.create') }}" class="btn" style="background-color: #66aa93; border-color: #66aa93; color: white;">投稿する</a>
     
 </div>
 
@@ -78,6 +80,8 @@
                     </x-slot>
                 </x-dropdown>
             </div>
+
+            
 
             <!-- Hamburger -->
             <div class="-me-2 flex items-center sm:hidden">

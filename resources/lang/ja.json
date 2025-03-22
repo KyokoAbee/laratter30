@@ -1,0 +1,22 @@
+{
+    "Profile": "プロフィール",
+    "Profile Information": "プロフィール情報",
+    "Update your account's profile information and email address.": "アカウントのプロフィール情報とメールアドレスを更新します。",
+    "Name": "名前",
+    "Email": "メールアドレス",
+    "Email Address": "メールアドレス",
+    "Save": "保存",
+    "Saved.": "保存しました。",
+    "Update Password": "パスワードの更新",
+    "Ensure your account is using a long, random password to stay secure.": "アカウントのセキュリティ確保のため、長くランダムなパスワードを使用していることを確認してください。",
+    "Current Password": "現在のパスワード",
+    "New Password": "新しいパスワード",
+    "Confirm Password": "パスワード（確認）",
+    "Delete Account": "アカウントの削除",
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.": "アカウントが削除されると、すべてのリソースとデータは完全に削除されます。アカウントを削除する前に、保持したいデータや情報をダウンロードしてください。",
+    "Are you sure you want to delete your account?": "本当にアカウントを削除しますか？",
+    "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.": "アカウントが削除されると、すべてのリソースとデータは完全に削除されます。アカウントを完全に削除することを確認するために、パスワードを入力してください。",
+    "Cancel": "キャンセル",
+    "Password": "パスワード",
+    "Log Out": "ログアウト"
+}

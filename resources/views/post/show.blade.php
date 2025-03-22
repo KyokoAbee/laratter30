@@ -39,9 +39,9 @@
                     <!-- アクションボタン -->
                     <div class="mt-4 flex justify-end space-x-2">
                         @if(Auth::id() == $post->user_id)
-                            <a href="{{ route('post.edit', $post->id) }}" class="btn bg-[#30466f] hover:bg-[#30466f]/90 border-[#30466f] text-white">編集</a>
+                            <a href="{{ route('post.edit', $post->id) }}" class="btn" style="background-color: #66aa93; border-color: #66aa93; color: white;">編集する</a>
                         @else
-                            <a href="{{ route('recommendation.create', $post->id) }}" class="btn bg-[#30466f] hover:bg-[#30466f]/90 border-[#30466f] text-white">この投稿に返信する</a>
+                            <a href="{{ route('recommendation.create', $post->id) }}" class="btn" style="background-color: #66aa93; border-color: #66aa93; color: white;">この投稿に返信する</a>
                         @endif
                     </div>
                 </div>

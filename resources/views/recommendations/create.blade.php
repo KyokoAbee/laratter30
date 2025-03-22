@@ -11,9 +11,10 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <!-- 元の投稿情報 -->
                     <div class="mb-6 p-4 border dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-900">
+                        
                         <div class="flex justify-between items-center">
                             <div>
-                                <h3 class="font-bold">{{ $post->user->name }}</h3>
+                                <h3 class="font-normal">{{ $post->user->name }}</h3>
                                 <p class="text-sm text-gray-500 dark:text-gray-400">{{ $post->created_at->format('Y/m/d H:i') }}</p>
                             </div>
                         </div>
@@ -30,17 +31,20 @@
                     </div>
 
                     <!-- 返信者情報 -->
-                    <div class="mb-6">
+                    <!-- <div class="mb-6">
                         <p class="font-semibold">返信者: {{ Auth::user()->name }}</p>
-                    </div>
+                    </div> -->
+
+<!-- 直接スタイル指定で余白を強制的に追加 -->
+<div style="margin-top: 60px;"></div>
 
                     <!-- 返信フォーム -->
-                    <form action="{{ route('recommendation.store', $post) }}" method="POST" id="recommendationForm">
+                    <form action="{{ route('recommendation.store', $post) }}" method="POST" id="recommendationForm" class="mt-16" >
                         @csrf
 
                         <!-- 本の検索フォーム -->
                         <div class="mb-6">
-                            <h3 class="text-lg font-bold mb-4">おすすめの本を検索</h3>
+                            <h3 class="text-lg font-bold mb-4" >あなたのおすすめを投稿する</h3>
                             <div class="relative">
                                 <div class="flex items-center w-full relative">
                                     <input type="text" id="bookSearch" class="input input-bordered w-full pr-10" placeholder="本のタイトルや著者名を入力（3文字以上）">
@@ -97,10 +101,10 @@
            
                         <!-- 送信ボタン -->
                         <div class="flex justify-end" style="gap: 15px;">
-                            <a href="{{ route('post.show', $post) }}" class="btn bg-[#30466f] hover:bg-[#30466f]/90 border-[#30466f] text-white">キャンセル</a>
-                            
-                            <button type="submit" class="btn bg-[#30466f] hover:bg-[#30466f]/90 border-[#30466f] text-white" id="submitButton" >返信を投稿</button>
-                        </div>
+    <a href="{{ route('post.show', $post) }}" class="btn bg-gray-450 hover:bg-gray-600 border-gray-600 text-black">キャンセル</a>
+    
+    <button type="submit" class="btn" style="background-color: #66aa93; border-color: #66aa93; color: white;">返信を投稿する</button>
+</div>
                         </form>
 
 
@@ -244,6 +248,10 @@
     
     // 本を選択する関数
     function selectBook(title, authors, thumbnail, description, bookId) {
+
+        // 検索ボックスの値を選択した本のタイトルに更新
+        document.getElementById('bookSearch').value = title;
+
         // 選択された本の情報を表示
         bookTitle.textContent = title;
         bookAuthor.textContent = authors;
@@ -274,88 +282,6 @@
 });
 
             
-        //     // 検索ボタンクリック時の処理
-        //     searchButton.addEventListener('click', function() {
-        //         const query = bookSearch.value.trim();
-        //         if (query === '') return;
-                
-        //         // Google Books APIを呼び出す
-        //         fetch(`https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(query)}&maxResults=9`)
-        //             .then(response => response.json())
-        //             .then(data => {
-        //                 searchResults.innerHTML = '';
-        //                 searchResults.classList.remove('hidden');
-                        
-        //                 if (data.items && data.items.length > 0) {
-        //                     data.items.forEach(book => {
-        //                         const volumeInfo = book.volumeInfo;
-        //                         const title = volumeInfo.title || '(タイトルなし)';
-        //                         const authors = volumeInfo.authors ? volumeInfo.authors.join(', ') : '(著者不明)';
-        //                         const thumbnail = volumeInfo.imageLinks ? volumeInfo.imageLinks.thumbnail : '/images/no-cover.png';
-        //                         const description = volumeInfo.description || '説明はありません';
-        //                         const bookId = book.id; // ここでbook.idを取得する
 
-        //                         const bookCard = document.createElement('div');
-        //                         bookCard.className = 'card bg-base-100 shadow-md hover:shadow-lg cursor-pointer';
-        //                         bookCard.innerHTML = `
-        //                             <figure class="p-4 h-48 flex items-center justify-center">
-        //                                 <img src="${thumbnail}" alt="${title}" class="max-h-full">
-        //                             </figure>
-        //                             <div class="card-body p-4">
-        //                                 <h3 class="card-title text-sm line-clamp-2">${title}</h3>
-        //                                 <p class="text-xs text-gray-600 dark:text-gray-400 line-clamp-1">${authors}</p>
-        //                             </div>
-        //                         `;
-                                
-        //                         bookCard.addEventListener('click', function() {
-        //                             // 選択された本の情報を表示
-        //                             bookTitle.textContent = title;
-        //                             bookAuthor.textContent = authors;
-        //                             bookThumbnail.src = thumbnail;
-        //                             bookId.textContent = `ID: ${bookId}`; // 追加: 本のID表示
-        //                             bookDescription.textContent = description;
-
-        //                             // デバッグコードをここに追加
-        //                             console.log("Book ID being set:", bookId);
-        //                             console.log("book_id_input element:", document.getElementById('book_id_input'));
-                                    
-        //                             // 隠しフィールドに値をセット
-        //                             bookTitleInput.value = title;
-        //                             bookAuthorInput.value = authors;
-        //                             bookThumbnailInput.value = thumbnail;
-        //                             bookDescriptionInput.value = description;
-        //                             document.getElementById('book_id_input').value = bookId; //book_id をセット
-
-        //                             // 値がセットされたか確認するデバッグコード
-        //                             console.log("book_id_input element value after setting:", document.getElementById('book_id_input').value);
-                                    
-        //                             // 選択された本の情報を表示し、検索結果を非表示に
-        //                             selectedBook.classList.remove('hidden');
-        //                             searchResults.classList.add('hidden');
-                                    
-        //                             // 送信ボタンを有効化
-        //                             submitButton.disabled = false;
-        //                         });
-                                
-        //                         searchResults.appendChild(bookCard);
-        //                     });
-        //                 } else {
-        //                     searchResults.innerHTML = '<p class="text-center p-4">検索結果がありません</p>';
-        //                 }
-        //             })
-        //             .catch(error => {
-        //                 console.error('Error fetching books:', error);
-        //                 searchResults.innerHTML = '<p class="text-center p-4">エラーが発生しました。もう一度お試しください。</p>';
-        //             });
-        //     });
-            
-        //     // Enterキーで検索を実行
-        //     bookSearch.addEventListener('keypress', function(e) {
-        //         if (e.key === 'Enter') {
-        //             e.preventDefault();
-        //             searchButton.click();
-        //         }
-        //     });
-        // });
     </script>
 </x-app-layout>

@@ -4,7 +4,7 @@
         <!-- メタタグなど -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans antialiased bg-[#f1ded6]">
+    <body class="font-sans antialiased bg-white">
         <div class="min-h-screen flex flex-col">
             @include('layouts.navigation')
 

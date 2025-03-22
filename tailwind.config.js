@@ -30,19 +30,21 @@ export default {
 
     plugins: [forms, require('daisyui')],
     daisyui: {
-        themes: [
+        themes: ['light', 'dark',
             {
                 mytheme: {
                     'primary': '#66aa93', // 緑
                     'secondary': '#e77965', // 赤
-                    'accent': '#30466f', // 紺
-                    'base-100': '#f1ded6', // 全体
-                    'info': '#A7E8BD',      // 情報メッセージ（ミントグリーン）
-                    'success': '#A7E8BD',   // 成功メッセージ
-                    'warning': '#FFD791',   // 警告メッセージ
-                    'error': '#FFB997',     // エラーメッセージ（柔らかい表現）
+                    'base-100': '#FFFFFF',  // 背景色（白）
+                    // 'accent': '#30466f', // 紺
+                    // 'base-100': '#f1ded6', // 全体
+                    // 'info': '#A7E8BD',      // 情報メッセージ（ミントグリーン）
+                    // 'success': '#A7E8BD',   // 成功メッセージ
+                    // 'warning': '#FFD791',   // 警告メッセージ
+                    // 'error': '#FFB997',     // エラーメッセージ（柔らかい表現）
                 },
             },
         ],
+        defaultTheme: "mytheme",
     },
 };

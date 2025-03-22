@@ -15,7 +15,7 @@
             </div>
             
             <div class="flex justify-end">
-                <button class="btn bg-[#30466f] hover:bg-[#30466f]/90 border-[#30466f] text-white">投稿</button>
+            <button class="btn" style="background-color: #66aa93; border-color: #66aa93; color: white;">投稿する</button>
             </div>
         </form>
     </div>
