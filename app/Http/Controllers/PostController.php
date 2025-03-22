@@ -14,7 +14,7 @@ class PostController extends Controller
         // dd('PostControllerのindex is called'); // このメッセージが表示されるか確認
         $posts = Post::with(['user', 'post_tags', 'recommendations'])
             ->latest() //新着順
-            ->paginate(10);
+            ->paginate(5);
 
         // dd($posts); // データが取得できているか確認
 

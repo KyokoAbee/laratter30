@@ -33,13 +33,16 @@
             </div>
 
 <!-- Search Bar -->
-<div class="flex items-center"> 
+<div class="flex items-center gap-6"> 
     <form method="GET" action="{{ route('search') }}" class="flex w-full max-w-md"> 
         <input type="text" name="query" placeholder="投稿からさがす..." 
                class="input border-gray-400 focus:border-gray-400 focus:outline-gray-400 rounded-lg flex-grow">
         <button type="submit" 
                 class="btn border-gray-400 bg-transparent hover:bg-gray-400 text-gray-400 hover:text-white rounded-lg ml-2">検索</button>
     </form>
+    <a href="{{ route('post.create') }}" class="btn bg-[#30466f] hover:bg-[#30466f]/90 border-[#30466f] text-white whitespace-nowrap">投稿</a>
+
+    
 </div>
 
             <!-- Settings Dropdown -->
