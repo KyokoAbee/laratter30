@@ -13,10 +13,10 @@
                 </div>
 
                 <!-- 投稿内容 -->
-                <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6 border-t-2 border-[#FFB997] mb-6">
+                <div class="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow p-6 border border-gray-200 mb-6">
                     <div class="flex justify-between items-center">
                         <div>
-                            <h3 class="font-bold">{{ $post->user->name }}</h3>
+                            <h3 class="font-normal">{{ $post->user->name }}</h3>
                             <p class="text-sm text-gray-500">{{ $post->created_at->format('Y/m/d H:i') }}</p>
                         </div>
                         <div class="text-sm">
@@ -46,15 +46,18 @@
                     </div>
                 </div>
 
+                    <!-- スペーサー -->
+                    <div class="h-12"></div>
+
                 <!-- おすすめ本の一覧 -->
-                <h3 class="text-xl font-bold mb-4">おすすめの本</h3>
+                <h3 class="text-xl font-bold mb-4">あなたに届いた返信</h3>
                 
                 <!-- ベストレコメンドが選ばれていない場合のメッセージ（投稿者向け） -->
                 @if($post->recommendations->isEmpty())
                     <p class="text-gray-500 text-center py-8">まだおすすめの本がありません。最初の返信をしてみましょう！</p>
                 @elseif(!$post->recommendations->contains('is_best', true) && Auth::id() == $post->user_id)
                     <div class="bg-[#FFD791]/20 p-4 rounded-lg mb-4">
-                        <p class="text-center">気に入ったレコメンドがあれば「ベストレコメンドに選ぶ」ボタンをクリックしてください。</p>
+                        <p class="text-center">気になったレコメンドには「ベストレコメンドに選ぶ」ボタンをクリックしてください。</p>
                     </div>
                 @endif
                 
@@ -145,7 +148,7 @@
                     @if(Auth::id() == $post->user_id && !$recommendation->is_best)
                         <form action="{{ route('recommendation.setBest', [$post->id, $recommendation->id]) }}" method="POST">
                             @csrf
-                            <button type="submit" class="btn btn-sm bg-[#30466f] hover:bg-[#30466f]/90 border-[#30466f] text-white">
+                            <button type="submit" class="btn" style="background-color: #66aa93; border-color: #66aa93; color: white;">
                                 ベストレコメンドに選ぶ
                             </button>
                         </form>
